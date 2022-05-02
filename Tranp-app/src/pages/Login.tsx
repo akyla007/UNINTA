@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { Button } from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
+import * as Progress from 'react-native-progress';
 
 export function Login() {
     const [newSkill, setNewSkill] = useState('');
@@ -43,10 +44,44 @@ export function Login() {
                     onChangeText={() => { }}
                 />
                 <Button onPress={() => { navigation.navigate("Home") }} />
-                
-                <Text style={[styles.title, { marginVertical: 50, }]}>
-                    My Skills
+
+                <Text style={[styles.title, { marginVertical: 50}]}>
+                    Situação das Rotas:
                 </Text>
+                <View style={{ flex: 1, flexDirection: 'row'}}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 1</Text>
+                    <Progress.Circle
+                        color='orange'
+                        indeterminate={false}
+                        progress={0.4}
+                        showsText={true}
+                        size={60}
+                        formatText={() => {return "10/54"}}
+                    />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row'}}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 2</Text>
+                    <Progress.Circle
+                        color="rgb(0, 255, 255)"
+                        indeterminate={false}
+                        progress={0.4}
+                        showsText={true}
+                        size={60}
+                        formatText={() => {return "10/54"}}
+                    />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row'}}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 3</Text>
+                    <Progress.Circle
+                        style={{}}
+                        color='red'
+                        indeterminate={false}
+                        progress={0.4}
+                        showsText={true}
+                        size={60}
+                        formatText={() => {return "10/54"}}
+                    />
+                </View>
             </View>
         </>
     )

@@ -11,9 +11,26 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={LoginNavigate} />
-        <Stack.Screen name="Home" component={HomeNavigate} />
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#121015',
+          },
+          headerTintColor: 'white'
+        }}
+      >
+        <Stack.Screen
+          name="Login"
+          component={LoginNavigate}
+          options={{ title: 'Faculdade F5' }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeNavigate}
+          options={{ title: "Rotas" }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

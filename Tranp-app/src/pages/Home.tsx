@@ -7,6 +7,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import { Button } from '../components/Button';
 
 export function HomeScreen() {
 
@@ -17,22 +18,6 @@ export function HomeScreen() {
             <Text style={styles.title}>
                 Bem vindo Aluno
             </Text>
-            <View>
-                <SectionList
-                    sections={[
-                        { title: 'Rota 1', data: ['Centro convenções ( 18:30 )', 'Pinheiro ( 18:45 )'] },
-                        { title: 'Rota 2', data: ['Lagoa ( 19:00 )', 'Rodolfo ( 19:00 )'] }
-                    ]}
-                    renderItem={({ item }) =>
-                        <TouchableOpacity style={styles.touchableItem}>
-                            {
-                                <Text style={styles.touchableTitle}>{item}</Text>
-                            }
-                        </TouchableOpacity>}
-                    renderSectionHeader={({ section }) => <Text style={styles.sectionHeader}>{section.title}</Text>}
-                    keyExtractor={(item, index) => index}
-                />
-            </View>
             <View style={styles.checkContainer}>
                 <CheckBox
                     disabled={false}
@@ -45,6 +30,7 @@ export function HomeScreen() {
                     Marque a caixa se irá utilizar algumas das rotas hoje.
                 </Text>
             </View>
+            <Button/>
         </View>
     )
 }
@@ -59,7 +45,9 @@ const styles = StyleSheet.create({
     checkContainer: {
         flex: 1,
         flexDirection: 'row',
-        flexWrap: 'wrap',
+        flexWrap: 'wrap-reverse',
+        alignContent:'flex-end',
+        bottom: 10
     },
     title: {
         color: '#FFF',
@@ -73,7 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',
-        color:'#FFF'
+        color: '#FFF'
     },
     checkbox: {
         flex: 0,
@@ -102,13 +90,13 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: "rgba(165, 114, 246, 0.6)",
         margin: 5,
-        
+
     },
     touchableTitle: {
         fontSize: 15,
         fontWeight: 'bold',
         textAlign: 'center',
-        color:'rgba(206, 209, 35, 0.8)',
+        color: 'rgba(206, 209, 35, 0.8)',
     }
 
 
