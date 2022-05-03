@@ -10,12 +10,18 @@ import {
 import { Button } from '../components/Button';
 import { useNavigation } from '@react-navigation/native';
 import * as Progress from 'react-native-progress';
+import axios from 'axios';
 
 export function Login() {
-    const [newSkill, setNewSkill] = useState('');
+    const [regisNumber, setRegisNumber] = useState(0)
     const [greeting, setGreeting] = useState('');
-    const [mySkills, setMySkills] = useState([]);
     const navigation = useNavigation();
+    const [data,setData] = useState('');
+
+    const api = axios.create({
+        baseURL: "http://localhost:3333",
+    })
+
     useEffect(() => {
         const currentHour = new Date().getHours();
 
@@ -27,6 +33,15 @@ export function Login() {
             setGreeting('Boa Noite!')
         }
     }, [])
+
+    async function getRoutesData() {
+        await api.post("/student", {
+            register: regisNumber
+        })
+        .then((res) => {
+            console.log(res)
+        })
+    }   
 
     return (
         <>
@@ -45,33 +60,33 @@ export function Login() {
                 />
                 <Button onPress={() => { navigation.navigate("Home") }} />
 
-                <Text style={[styles.title, { marginVertical: 50}]}>
+                <Text style={[styles.title, { marginVertical: 50 }]}>
                     Situação das Rotas:
                 </Text>
-                <View style={{ flex: 1, flexDirection: 'row'}}>
-                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 1</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50 }}>Rota 1</Text>
                     <Progress.Circle
                         color='orange'
                         indeterminate={false}
                         progress={0.4}
                         showsText={true}
                         size={60}
-                        formatText={() => {return "10/54"}}
+                        formatText={() => { return "10/54" }}
                     />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row'}}>
-                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 2</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50 }}>Rota 2</Text>
                     <Progress.Circle
                         color="rgb(0, 255, 255)"
                         indeterminate={false}
                         progress={0.4}
                         showsText={true}
                         size={60}
-                        formatText={() => {return "10/54"}}
+                        formatText={() => { return "10/54" }}
                     />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row'}}>
-                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50}}>Rota 3</Text>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <Text style={{ color: "white", fontSize: 30, paddingRight: 50 }}>Rota 3</Text>
                     <Progress.Circle
                         style={{}}
                         color='red'
@@ -79,7 +94,7 @@ export function Login() {
                         progress={0.4}
                         showsText={true}
                         size={60}
-                        formatText={() => {return "10/54"}}
+                        formatText={() => { return "10/54" }}
                     />
                 </View>
             </View>
